@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { signup } from "../actions/auth";
+// import { signup } from "../actions/auth";
 import axios from "axios";
 
 const Register = ({ signup, isAuthenticated }) => {
@@ -136,4 +136,5 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { signup })(Register);
+// export default connect(mapStateToProps, { signup })(Register);
+export default Register;

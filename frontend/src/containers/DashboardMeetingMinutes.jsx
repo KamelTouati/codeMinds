@@ -148,6 +148,60 @@ const DashboardMeetingMinutes = () => {
                       </div>
                     </td>
                   </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      5
+                    </th>
+                    <td class="px-6 py-4 flex items-center gap-2">
+                      <img src="/images/image.png" alt="" />
+                      <div className="flex flex-col">
+                        <span className="text-black font-semibold">
+                          Mathilda Bell
+                        </span>
+                        <span>Created At 13 December 2023</span>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 text-red-500">
+                      <div className="flex gap-2 items">
+                        <img
+                          className="w-[20px]"
+                          src="/images/pdf.svg"
+                          alt=""
+                        />
+                        PV-S1.pdf
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      6
+                    </th>
+                    <td class="px-6 py-4 flex items-center gap-2">
+                      <img src="/images/image.png" alt="" />
+                      <div className="flex flex-col">
+                        <span className="text-black font-semibold">
+                          Mathilda Bell
+                        </span>
+                        <span>Created At 13 December 2023</span>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 text-red-500">
+                      <div className="flex gap-2 items">
+                        <img
+                          className="w-[20px]"
+                          src="/images/pdf.svg"
+                          alt=""
+                        />
+                        PV-S1.pdf
+                      </div>
+                    </td>
+                  </tr>
                   
                 </tbody>
               </table>

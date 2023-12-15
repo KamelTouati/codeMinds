@@ -26,10 +26,10 @@ function Sidebar(props) {
     <>
       <aside
         id="default-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-auto"
         aria-label="Sidebar"
       >
-        <div className="bg-[#F2F6FF] h-full flex flex-col gap-6 p-6">
+        <div className="bg-[#F2F6FF] flex flex-col gap-6 p-6">
           <Link to="/" className="flex flex-col items-center">
             <img src={logo} className="h-8 mr-3" alt="Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -92,10 +92,17 @@ function Sidebar(props) {
               <img src="/images/chart-square.svg" alt="" />
               Schedule
             </Link>
+            <Link
+              href="/schedule"
+              className="flex flex-row gap-2 rounded-xl w-full px-4 font-semibold py-2 bg-[#D9D9D9]/20"
+            >
+              <img src="/images/setting.svg" alt="" />
+              Report a problem
+            </Link>
           </div>
           <Link
             href="/schedule"
-            className="flex flex-row gap-2 rounded-xl w-full px-4 font-semibold my-20 py-2 bg-[#D9D9D9]/20"
+            className="flex flex-row gap-2 rounded-xl w-full px-4 font-semibold py-2 bg-[#D9D9D9]/20"
           >
             <img src="/images/bank.svg" alt="" />
             Features
@@ -105,7 +112,6 @@ function Sidebar(props) {
           </Link>
         </div>
       </aside>
-      
     </>
   ) : null;
 }
