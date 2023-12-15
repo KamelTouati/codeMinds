@@ -2,12 +2,15 @@ import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 import { Toaster } from "react-hot-toast";
+import ReduxProvider from "./redux/provider";
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
-      <Toaster position="top-center" reverseOrder={false} />
+      <ReduxProvider>
+        <RouterProvider router={router} />
+        <Toaster position="bottom-center" reverseOrder={false} />
+      </ReduxProvider>
     </>
   );
 }

@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { axiosInstance } from "../../src/api/axios.config";
-import CookieService from "../../src/services/CookieService";
+import { axiosInstance } from "../../api/axios.config";
+import CookieService from "../../services/CookieService";
 import { toast } from "react-hot-toast";
+import { ILoginFormInput } from "../../components/utils/types";
 
 interface UserState {
   loading: boolean;
@@ -17,7 +18,7 @@ const initialState: UserState = {
 
 export const userLogin = createAsyncThunk(
   "login/userLogin",
-  async (user, thunkAPI) => {
+  async (user: ILoginFormInput, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
 
     try {
@@ -47,7 +48,7 @@ const loginSlice = createSlice({
       const EXPIRES_IN_DAYS = 1000 * 60 * 60 * 24 * IN_DAYS;
       date.setTime(date.getTime() + EXPIRES_IN_DAYS);
       const options = { path: "/", expires: date };
-      CookieService.set("jwt", action.payload.jwt, options);
+      CookieService.set("token", action.payload.token, options);
       toast.success("Logged in successfully");
 
       setTimeout(() => {
@@ -64,5 +65,4 @@ const loginSlice = createSlice({
   },
 });
 
-export const selectLogin = ({ login }) => login;
 export default loginSlice.reducer;
