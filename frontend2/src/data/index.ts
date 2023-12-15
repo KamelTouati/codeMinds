@@ -1,4 +1,4 @@
-import { ILoginInput } from "../components/utils/types";
+import { ILoginInput } from "../utils/types";
 
 export const LOGIN_FORM: ILoginInput[] = [
   {

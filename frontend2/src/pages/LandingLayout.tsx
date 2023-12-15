@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 
 /* eslint-disable no-empty-pattern */
 interface IProps {}
-const AppLayout = ({}: IProps) => {
+const LandingLayout = ({}: IProps) => {
   return (
     <div>
       <Navbar />
@@ -11,4 +11,4 @@ const AppLayout = ({}: IProps) => {
     </div>
   );
 };
-export default AppLayout;
+export default LandingLayout;
