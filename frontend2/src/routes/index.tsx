@@ -7,16 +7,19 @@ import AppLayout from "../pages/AppLayout";
 import LandingPage from "../pages/Landing";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import DashboardPage from "../pages/dashboard/Dashboard";
+import CookieService from "../services/CookieService";
 
-const isLoggedIn = true;
-const userData: { email: string } | null = isLoggedIn
-  ? { email: "moncef@estin.dz" }
-  : null;
+const token = CookieService.get("jwt");
+const isLoggedIn = token ? true : false;
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoute isAllowed={!isLoggedIn} redirectTo="/dashboard">
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorHandler />,
     children: [
       {
@@ -25,25 +28,25 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: (
-          <ProtectedRoute isAllowed={!isLoggedIn} redirectTo="/contribute">
-            <LoginPage />
-          </ProtectedRoute>
-        ),
+        element: <LoginPage />,
       },
     ],
   },
   {
-    path: "/dashbord",
-    element: <DashboardLayout />,
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login">
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
         element: <DashboardPage />,
       },
       //   {
-      //     path: "think-in-react",
-      //     element: <ThinkInReact />,
+      //     path: "add-techer",
+      //     element: <AddTeacherPage />,
       //   },
     ],
   },
