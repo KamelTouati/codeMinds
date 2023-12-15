@@ -7,6 +7,8 @@ import {
   Profile,
   ResetPassword,
   ResetPasswordConfirm,
+  DashboardAdmin,
+  DashboardMeetingMinutes,
 } from "./containers";
 
 import Layout from "./hocs/Layout";
@@ -33,6 +35,16 @@ export default function App() {
               <Route path="/admin" exact element={<AdminLanding />} />
               <Route path="/dashboard" exact element={<AdminLanding />} />
               <Route path="/reset-password" exact element={<ResetPassword />} />
+              <Route
+                path="/admin-dashboard"
+                exact
+                element={<DashboardAdmin />}
+              />
+              <Route
+                path="/dashboard-meeting-minutes"
+                exact
+                element={<DashboardMeetingMinutes />}
+              />
               <Route
                 path="/reset-password-confirm"
                 exact
