@@ -10,6 +10,7 @@ import {
   DashboardAdmin,
   DashboardMeetingMinutes,
   AdminAnnouncement,
+  Announcement,
   AdminScheduler,
 } from "./containers";
 
@@ -43,6 +44,7 @@ export default function App() {
                 exact
                 element={<AdminAnnouncement />}
               />
+              <Route path="/announcement" exact element={<Announcement />} />
               <Route
                 path="/admin-scheduler"
                 exact

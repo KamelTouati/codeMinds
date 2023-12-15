@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { reset_password } from "../actions/auth";
+// import { reset_password } from "../actions/auth";
 
-const ResetPassword = ({ reset_password }) => {   
+const ResetPassword = ({ reset_password }) => {
   const navigate = useNavigate();
   const [requestSent, setRequestSent] = useState(false);
   const [formData, setFormData] = useState({
@@ -59,14 +59,11 @@ const ResetPassword = ({ reset_password }) => {
         </form>
       </div>
       <div>
-        <img
-          className="z-20 w-[500px] relative"
-          src="/images/bg3.svg"
-          alt=""
-        />
+        <img className="z-20 w-[500px] relative" src="/images/bg3.svg" alt="" />
       </div>
     </div>
   );
-};    
+};
 
-export default connect(null, { reset_password })(ResetPassword);
+// export default connect(null, { reset_password })(ResetPassword);
+export default ResetPassword;

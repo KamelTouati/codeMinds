@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../actions/auth";
+// import { login } from "../actions/auth";
 import { FaGoogle } from "react-icons/fa";
 
 const Login = ({ login, isAuthenticated }) => {
@@ -104,7 +104,6 @@ const Login = ({ login, isAuthenticated }) => {
             </svg>
             Sign in with Google
           </button>
-          
         </div>
       </div>
     </div>
@@ -115,4 +114,5 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+// export default connect(mapStateToProps, { login })(Login);
+export default Login;

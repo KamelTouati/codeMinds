@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { IoMdNotifications } from "react-icons/io";
 import { FaQuestionCircle } from "react-icons/fa";
 
-const Navbar_auth = () => {
+const NavbarAuth = () => {
   return (
     <>
       <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -155,4 +155,4 @@ const Navbar_auth = () => {
   );
 };
 
-export default Navbar_auth;
+export default NavbarAuth;
