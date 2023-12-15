@@ -3,16 +3,18 @@ import { Fragment, ReactNode } from "react";
 
 interface IProps {
   isOpen: boolean;
-  onClose: () => void;
   title?: string;
-  description?: string;
+  closeModel: () => void;
   children: ReactNode;
 }
 
-const Modal = ({ isOpen, onClose, title, children, description }: IProps) => {
+const Modal = ({ isOpen, closeModel, title, children }: IProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={onClose}>
+      <Dialog as="div" className="relative z-10" onClose={closeModel}>
+        {/* backdrop filter */}
+        <div className="fixed inset-0 backdrop-blur-[2px]" aria-hidden="true" />
+
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -45,11 +47,7 @@ const Modal = ({ isOpen, onClose, title, children, description }: IProps) => {
                     {title}
                   </Dialog.Title>
                 )}
-                {description && (
-                  <p className="text-sm text-gray-500 mt-3">{description}</p>
-                )}
-
-                <div className="mt-4">{children}</div>
+                <div className="mt-4 ">{children}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

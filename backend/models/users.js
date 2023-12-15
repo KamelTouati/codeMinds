@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     firstName: String,
     lastName: String,
     email: { type: String, unique: true },
-    password: String,
+    password: { type: String, select: false },
     profileImage: String,
     role: {
       type: String,
@@ -34,10 +34,8 @@ userSchema.pre("save", async function (next) {
 
 userSchema.statics.login = async function (email, password) {
   //* this key word  here have access to Users model
-  const user = await this.findOne({ email });
-  console.log(user);
+  const user = await this.findOne({ email }).select("+password");
   if (user != null) {
-    console.log(password, user.password);
     const check = await bcrypt.compare(password, user.password);
     if (check) {
       return user;

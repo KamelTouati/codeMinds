@@ -7,10 +7,11 @@ const Layout = (props) => {
     props.checkAuthenticated();
     props.load_user();
   }, []);
+
   return (
     <>
       {/* <Navbar /> */}
-      <div className='flex flex-row gap-2'>
+      <div className="flex flex-row gap-2">
         {/* <Sidebar/> */}
         {props.children}
       </div>
