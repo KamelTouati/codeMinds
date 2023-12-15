@@ -24,25 +24,14 @@ export default function App() {
     <Provider store={store}>
       <Router>
         <Layout>
-          l;kpok
           <div className="container">
             <Routes>
               <Route path="/" exact element={<Landing />} />
               <Route path="/login" exact element={<Login />} />
-              {/* <Route path="/fields" exact element={<Fields />} /> */}
               <Route path="/register" exact element={<Register />} />
-              {/* <Route path="/quiz" exact element={<Quiz />} /> */}
               <Route path="/profile" exact element={<Profile />} />
               <Route path="/admin" exact element={<AdminLanding />} />
               <Route path="/dashboard" exact element={<AdminLanding />} />
-              {/* <Route path="/create-project" exact element={<CreateProject />} /> */}
-              {/* <Route path="/user-search" exact element={<UserSearch />} /> */}
-              {/* <Route path="/activate" exact element={<Activate />} /> */}
-              {/* <Route
-                path="/project-details"
-                exact
-                element={<ProjectDetails />}
-              /> */}
               <Route path="/reset-password" exact element={<ResetPassword />} />
               <Route
                 path="/reset-password-confirm"

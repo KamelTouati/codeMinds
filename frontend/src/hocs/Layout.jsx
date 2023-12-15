@@ -12,7 +12,7 @@ const Layout = (props) => {
     <>
       <Navbar />
       <div className='flex flex-row gap-2'>
-        <Sidebar user={true}/>
+        {/* <Sidebar/> */}
         {props.children}
       </div>
       <Footer />
