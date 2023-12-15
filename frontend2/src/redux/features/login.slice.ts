@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axios.config";
 import CookieService from "../../services/CookieService";
 import { toast } from "react-hot-toast";
-import { ILoginFormInput } from "../../components/utils/types";
+import { ILoginFormInput } from "../../utils/types";
 import { TOKEN_KEY } from "../../data";
 
 interface UserState {
@@ -36,7 +36,7 @@ const loginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(userLogin.pending, (state, action) => {
+    builder.addCase(userLogin.pending, (state) => {
       state.loading = true;
     });
 

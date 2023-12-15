@@ -2,11 +2,10 @@ import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LOGIN_FORM } from "../data";
-import { ILoginFormInput } from "../components/utils/types";
+import { ILoginFormInput } from "../utils/types";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
+import { RootState, useAppDispatch } from "../redux/store";
 import { userLogin } from "../redux/features/login.slice";
-import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
   const {
