@@ -47,8 +47,7 @@ const verifyAdmin = async (req, res, next) => {
 
 //* extract token from this user
 const extractTokenFromHeaderAuthorization = (req) => {
-  const token = req.headers.authorization;
-  // console.log(token);
+  const token = req.headers.authorization.split(" ")[1];
   return token;
 };
 

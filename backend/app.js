@@ -4,12 +4,14 @@ var logger = require("morgan");
 const connectDB = require("./configs/db.config");
 const MyResponse = require("./models/Response");
 const { PORT } = require("./configs/environment.config");
+const cors = require("cors");
 
 var app = express();
 
 //! connect to mongoDB
 connectDB();
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
