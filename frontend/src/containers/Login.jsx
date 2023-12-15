@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = ({ login, isAuthenticated }) => {
   const navigate = useNavigate();
@@ -36,14 +37,9 @@ const Login = ({ login, isAuthenticated }) => {
   };
   return (
     <div className="flex h-screen">
-      <img
-        className="absolute right-0 top-[50px] my-5 -z-1"
-        src="/images/bg.svg"
-        alt=""
-      />
       <div className="hidden md:block md:w-1/2 ">
         <img
-          src="/images/login.svg"
+          src="/images/bg1.svg"
           alt=""
           className="w-full h-full object-cover"
         />
@@ -51,7 +47,7 @@ const Login = ({ login, isAuthenticated }) => {
 
       <div className="w-full md:w-1/2 p-8 flex items-center justify-center relative">
         <div className="w-full max-w-md">
-          <h2 className="text-xl font-lg my-5 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
+          <h2 className="text-3xl font-bold my-5 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
             Login to your account
           </h2>
           <form onSubmit={(e) => onSubmit(e)}>
@@ -89,17 +85,26 @@ const Login = ({ login, isAuthenticated }) => {
             </Link>
           </p>
           <button
-            className="w-fit border border-white hover:bg-grat-600 hover:border-gray-600 text-gray-800 p-2 rounded-md flex items-center justify-center"
-            onClick={continueWithGoogle}
             type="button"
+            onClick={continueWithGoogle}
+            class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2"
           >
-            <img
-              src="/images/google.svg"
-              alt="Gmail Logo"
-              className="w-6 h-6 mr-2  "
-            />
+            <svg
+              class="w-4 h-4 me-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 18 19"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                clip-rule="evenodd"
+              />
+            </svg>
             Sign in with Google
           </button>
+          
         </div>
       </div>
     </div>

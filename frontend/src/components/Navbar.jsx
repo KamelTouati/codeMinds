@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "/images/logo.svg";
+import logo from "/images/logo.png";
 
 export default function Navbar() {
   return (
-    <nav className="glass border-gray-200 relative">
+    <nav className="glass border-color1 relative">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 relative">
         <Link to="/" className="flex items-center">
           <img src={logo} className="h-8 mr-3" alt="Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Sciloscope
+            CodeMinds
           </span>
         </Link>
         <button
@@ -41,19 +41,19 @@ export default function Navbar() {
             <li>
               <Link
                 to="/login"
-                className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className="text-color7 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2"
                 aria-current="page"
               >
-                Become a collaborator
+                Log in
               </Link>
             </li>
             <li>
               <Link
                 to="/register"
-                className="border border-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className="rounded-md border border-solid border-[#CCC3FD] bg-[#F6F4FE] p-2 text-[#734AE5]"
                 aria-current="page"
               >
-                Manage projects
+                Sign up
               </Link>
             </li>
           </ul>

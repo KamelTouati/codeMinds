@@ -27,9 +27,10 @@ const ResetPassword = ({ reset_password }) => {
   }
   return (
     <div className="flex justify-around items-center">
-      <img className="absolute top-0 right-0 w-[70%]" src="./bg.svg" alt="" />
       <div>
-        <h1 className="text-3xl font-black text-red-500 py-2">Request Password Reset</h1>
+        <h2 className="text-3xl font-bold my-5 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
+          Request Password Reset
+        </h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="mb-6">
             <label
@@ -60,7 +61,7 @@ const ResetPassword = ({ reset_password }) => {
       <div>
         <img
           className="z-20 w-[500px] relative"
-          src="./illustration1.svg"
+          src="/images/bg3.svg"
           alt=""
         />
       </div>
