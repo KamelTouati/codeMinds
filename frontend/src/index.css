@@ -27,3 +27,11 @@
   border: 3px solid var(--Primary-Focus, #ccc3fd);
   background: var(--Primary-Main, #5a3fe0);
 }
+
+.progress-bar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(#4A25E1 75%, #EDE9FC 0);
+}
