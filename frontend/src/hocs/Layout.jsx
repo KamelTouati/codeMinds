@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Navbar, Footer } from "../components";
 import { connect } from "react-redux";
 import { checkAuthenticated, load_user } from "../actions/auth";
+import Sidebar from "../components/Sidebar";
 const Layout = (props) => {
   useEffect(() => {
     props.checkAuthenticated();
@@ -10,7 +11,10 @@ const Layout = (props) => {
   return (
     <>
       <Navbar />
-      {props.children}
+      <div className='flex flex-row gap-2'>
+        <Sidebar user={true}/>
+        {props.children}
+      </div>
       <Footer />
     </>
   );

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const moduleSchema = new mongoose.Schema({
+  //teachers
   sections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sections" }],
   sectionsNumber: Number,
 });
