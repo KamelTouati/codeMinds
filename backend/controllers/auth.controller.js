@@ -17,7 +17,7 @@ class AuthController {
     const { email, password } = req.body;
     const user = await Users.login(email, password);
     const token = authentication.createToken(user._id);
-    return res.json({ token });
+    return res.json({ token, role: user.role });
   };
 
   getProfile = async (req, res) => {
