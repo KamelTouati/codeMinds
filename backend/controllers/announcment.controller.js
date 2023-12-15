@@ -4,9 +4,12 @@ const Announcement = require("../models/announcement");
 class AnnouncementController {
   async createAnnouncement(req, res) {
     try {
-      const { announcementType, message, dateTime } = req.body;
+      const { announcementType, announcedby, title, message, dateTime } =
+        req.body;
       const newAnnouncement = await Announcement.create({
         announcementType,
+        announcedby,
+        title,
         message,
         dateTime,
       });
