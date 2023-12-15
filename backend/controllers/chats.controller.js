@@ -23,6 +23,7 @@ class ChatsController {
       next(error);
     }
   };
+
   deleteChat = async (req, res, next) => {
     try {
       const { chatRoomId } = req.params;
@@ -38,7 +39,7 @@ class ChatsController {
 
   getChats = async (req, res, next) => {
     try {
-      const { teacherId } = req.params;
+      const teacherId = req.user._id;
       // Fetch all chat rooms
       const chatRooms = await ChatRoom.find({ teachers: { $in: [teacherId] } });
 

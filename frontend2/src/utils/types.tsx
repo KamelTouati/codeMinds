@@ -48,3 +48,17 @@ export interface IAnnomaly {
   dateTime: Date;
   solvedBy?: IUser;
 }
+
+export interface IChat {
+  _id: string;
+  teachers: IUser[];
+  responsable: IUser;
+}
+
+export interface IMessage {
+  _id: string;
+  sender: IUser;
+  message: string;
+  roomdId: string;
+  createdAt: string;
+}

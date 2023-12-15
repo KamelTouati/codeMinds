@@ -1,14 +1,8 @@
 const express = require("express");
 const chatsController = require("../controllers/chats.controller");
+const messageController = require("../controllers/messages.controller");
 const awaitHandlerFactory = require("../middlewares/awaitHandlerFactory.middleware");
 const authentication = require("../middlewares/authentication");
-
-//post  accessChat
-//get fetchChats
-//post  createGroupChat
-//put renameGroup
-//put removeFromGroup
-//put addToGroup
 
 const router = express.Router();
 
@@ -18,27 +12,24 @@ router.get(
   awaitHandlerFactory(chatsController.getChats)
 );
 
-//* delete all chats
-router.delete(
+router.post(
   "/",
   authentication.verifyUser,
   authentication.verifyAdmin,
-  awaitHandlerFactory(chatsController.deleteChats)
+  awaitHandlerFactory(chatsController.createChat)
 );
 
-//* if chat exist we return it
-//* else we create a new chat
+//! messages routes
 router.post(
-  "/access",
+  "/:chatId",
   authentication.verifyUser,
-  awaitHandlerFactory(chatsController.accessChat)
+  awaitHandlerFactory(messageController.sendMessage)
 );
 
-router.delete(
-  "/delete",
+router.get(
+  "/:chatId",
   authentication.verifyUser,
-  // authentication.verifyAdmin,
-  awaitHandlerFactory(chatsController.deleteChat)
+  awaitHandlerFactory(messageController.getAllMessages)
 );
 
 module.exports = router;
