@@ -4,7 +4,7 @@ export { default as Register } from "./Register";
 export { default as Profile } from "./Profile";
 export { default as DashboardAdmin } from "./admin/DashboardAdmin/DashboardAdmin";
 export { default as AdminAnnouncement } from "./admin/AdminAnnouncement/AdminAnnouncement";
-export { default as Announcement } from "./admin/Announcement/Announcement";
+export { default as Announcement } from "./Announcement/Announcement";
 export { default as AdminScheduler } from "./admin/AdminScheduler";
 export { default as DashboardMeetingMinutes } from "./DashboardMeetingMinutes";
 export { default as ResetPassword } from "./ResetPassword";
