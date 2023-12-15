@@ -3,6 +3,7 @@ import { axiosInstance } from "../../api/axios.config";
 import CookieService from "../../services/CookieService";
 import { toast } from "react-hot-toast";
 import { ILoginFormInput } from "../../components/utils/types";
+import { TOKEN_KEY } from "../../data";
 
 interface UserState {
   loading: boolean;
@@ -48,7 +49,7 @@ const loginSlice = createSlice({
       const EXPIRES_IN_DAYS = 1000 * 60 * 60 * 24 * IN_DAYS;
       date.setTime(date.getTime() + EXPIRES_IN_DAYS);
       const options = { path: "/", expires: date };
-      CookieService.set("token", action.payload.token, options);
+      CookieService.set(TOKEN_KEY, action.payload.token, options);
       toast.success("Logged in successfully");
 
       setTimeout(() => {

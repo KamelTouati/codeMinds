@@ -12,3 +12,5 @@ export const LOGIN_FORM: ILoginInput[] = [
     type: "password",
   },
 ];
+
+export const TOKEN_KEY = "token";

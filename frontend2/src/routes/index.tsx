@@ -8,8 +8,9 @@ import LandingPage from "../pages/Landing";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import DashboardPage from "../pages/dashboard/Dashboard";
 import CookieService from "../services/CookieService";
+import { TOKEN_KEY } from "../data";
 
-const token = CookieService.get("jwt");
+const token = CookieService.get(TOKEN_KEY);
 const isLoggedIn = token ? true : false;
 
 const router = createBrowserRouter([
