@@ -9,6 +9,9 @@ import {
   ResetPasswordConfirm,
   DashboardAdmin,
   DashboardMeetingMinutes,
+  AdminAnnouncement,
+  Announcement,
+  AdminScheduler,
 } from "./containers";
 
 import Layout from "./hocs/Layout";
@@ -17,7 +20,6 @@ import store from "./store";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
-import AdminLanding from "./containers/admin/AdminLanding";
 // ..
 AOS.init();
 
@@ -32,19 +34,28 @@ export default function App() {
               <Route path="/login" exact element={<Login />} />
               <Route path="/register" exact element={<Register />} />
               <Route path="/profile" exact element={<Profile />} />
-              <Route path="/admin" exact element={<AdminLanding />} />
-              <Route path="/dashboard" exact element={<AdminLanding />} />
-              <Route path="/reset-password" exact element={<ResetPassword />} />
               <Route
-                path="/admin-dashboard"
+                path="/dashboard-admin"
                 exact
                 element={<DashboardAdmin />}
+              />
+              <Route
+                path="/admin-announcement"
+                exact
+                element={<AdminAnnouncement />}
+              />
+              <Route path="/announcement" exact element={<Announcement />} />
+              <Route
+                path="/admin-scheduler"
+                exact
+                element={<AdminScheduler />}
               />
               <Route
                 path="/dashboard-meeting-minutes"
                 exact
                 element={<DashboardMeetingMinutes />}
               />
+              <Route path="/reset-password" exact element={<ResetPassword />} />
               <Route
                 path="/reset-password-confirm"
                 exact

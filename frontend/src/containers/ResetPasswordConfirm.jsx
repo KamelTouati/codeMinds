@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { reset_password_confirm } from "../actions/auth";
+// import { reset_password_confirm } from "../actions/auth";
 
 const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
   const navigate = useNavigate();
@@ -80,14 +80,11 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
         </form>
       </div>
       <div>
-        <img
-          className="z-20 w-[500px] relative"
-          src="/images/bg4.svg"
-          alt=""
-        />
+        <img className="z-20 w-[500px] relative" src="/images/bg4.svg" alt="" />
       </div>
     </div>
   );
 };
 
-export default connect(null, { reset_password_confirm })(ResetPasswordConfirm);
+// export default connect(null, { reset_password_confirm })(ResetPasswordConfirm);
+export default ResetPasswordConfirm;
