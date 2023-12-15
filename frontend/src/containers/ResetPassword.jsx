@@ -1,72 +1,164 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { reset_password } from "../actions/auth";
+import React from 'react'
+import { IoArrowForwardCircleOutline } from "react-icons/io5";
+import Select from 'react-select'
 
-const ResetPassword = ({ reset_password }) => {   
-  const navigate = useNavigate();
-  const [requestSent, setRequestSent] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-  });
 
-  const { email } = formData;
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+function ResetPassword() {
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // console.log(email);
-    reset_password(email);
-    setRequestSent(true);
-  };
 
-  if (requestSent) {
-    navigate("/");
-  }
+
+    const singleOptions  = [
+        {value:'Tari',label:'Tari'},
+        {value:'Elmir',label:'Elmir'},
+    ]
+
+    const singleStyles = {
+        control: (styles) => ({
+            ...styles,
+            paddingTop: '4px',
+            paddingBottom: '4px',
+            // borderColor:"#00000000",
+            // borderRight:"solid 1px #00000055",
+            // borderRadius:"0px",
+            // paddingRight:"10px",
+        }),
+        singleValue:(styles)=>({
+            ...styles,
+            color:"#0146B1dd",
+            fontWeight:600,
+            fontSize:"20px",
+            paddingLeft:"6px",
+        })
+    }
+
+    const customTheme = (theme)=>{
+        return {
+            ...theme,
+            colors: {
+                ...theme.colors,
+                primary25: '#E4EEFC',
+                primary: '#0146B1',
+            },
+        }
+    }
+
+    const multiStyles = {
+        control: (styles) => ({
+            ...styles,
+            paddingTop: "4px",
+            paddingBottom: "4px",
+
+
+        }),
+        multiValue: (styles) => {
+            return {
+                ...styles,
+                backgroundColor: '#E4EEFC',
+                borderRadius: '20px',
+                paddingLeft: "16px",
+                // paddingTop: "4px",
+                paddingRight:"6px",
+                // paddingBottom: "4px",
+                padding:"2px",
+                color: '#0146B1',
+                fontWeight: 600,
+                flex: '0 0 auto',
+            }
+        },
+        multiValueLabel: (styles) => {
+            return {
+                ...styles,
+                color: '#0146B1',
+            }
+        },
+        valueContainer: (styles) => ({
+            ...styles,
+            overflowX: 'scroll',
+            paddingLeft:"12px",
+            flexWrap: 'unset',
+            "::-webkit-scrollbar":{
+                    display:"none"
+                }
+        }),
+        multiValueRemove: (styles) => {
+            return {
+                ...styles,
+                color: '#0146B1',
+                cursor: 'pointer',
+                ':hover': {
+                    color: '#0146B199',
+                },
+                
+            }
+        },
+    }
+
+    // page of the schedules search
+
   return (
-    <div className="flex justify-around items-center">
-      <div>
-        <h2 className="text-3xl font-bold my-5 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
-          Request Password Reset
-        </h2>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div className="mb-6">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Your email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@domaine.com"
-              value={email}
-              name="email"
-              onChange={(e) => onChange(e)}
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Reset Password
-          </button>
-        </form>
-      </div>
-      <div>
-        <img
-          className="z-20 w-[500px] relative"
-          src="/images/bg3.svg"
-          alt=""
-        />
-      </div>
-    </div>
-  );
-};    
+    <div className="flex flex-col gap-8 rounded-xl shadow-sm border-[1px]">
+      <div className="flex flex-row justify-between items-center border-b-[1px]">
+      
+      
+      <h1 className="px-6 py-2">
+        Schedules
+      </h1>
+      
+      <button className="px-6 px-2 rounded-xl">
+        <span>Generate new schedule</span>
+        <IoArrowForwardCircleOutline />
+      </button>
 
-export default connect(null, { reset_password })(ResetPassword);
+
+
+      </div>
+
+      <div className="flex flex-row justify-between w-full">
+          
+          {/* Teacher Select */}
+          <div className="w-[30%] mx-4">
+              <Select
+                  onChange={(e) => setPostOption(e.value)}
+                  options={singleOptions}
+                  theme={customTheme}
+                  styles={singleStyles}
+                  // isSearchable
+                  autoFocus
+                  placeholder="Type"
+                  className="w-full"
+                  defaultValue={'TALENT'}
+
+              />
+          </div>
+
+          {/* Year Select */}
+          <div className="w-[50%] mx-4">
+              <Select
+                  placeholder="Select Categories"
+                  onChange={(e) => {
+                      setSelectedCategories((prev) =>
+                          e.map((option) => {
+                              return option.value
+                          })
+                      )
+                  }}
+                  noOptionsMessage={() => 'No matches found .'}
+                  theme={customTheme}
+                  isSearchable
+                  isMulti
+                  className="w-full hide-scrollbar"
+                  options={categoryOptions}
+                  styles={categoryStyles}
+              />
+          </div>
+
+          
+      </div>
+
+
+
+    </div>
+  )
+}
+
+export default ResetPassword
