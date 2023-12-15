@@ -5,8 +5,6 @@ function AdminLanding() {
   return (
     <div>
         
-        jajaga
-
     </div>
   )
 }
