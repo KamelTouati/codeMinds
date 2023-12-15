@@ -1,12 +1,7 @@
 export { default as Landing } from "./Landing/Landing";
 export { default as Login } from "./Login";
-export { default as Fields } from "./Fields";
 export { default as Register } from "./Register";
 export { default as Profile } from "./Profile";
-export { default as CreateProject } from "./CreateProject";
-export { default as ProjectDetails } from "./ProjectDetails";
-export { default as UserSearch } from "./UserSearch/UserSearch";
-export { default as Quiz } from "./Quiz/Quiz";
 export { default as Activate } from "./Activate";
 export { default as ResetPassword } from "./ResetPassword";
 export { default as ResetPasswordConfirm } from "./ResetPasswordConfirm";
