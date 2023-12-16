@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
       colors: {
         color1: "#F2F6FF",
         color2: "#FEFEFE",

@@ -16,6 +16,10 @@
   max-width: 100%;
   scroll-behavior: smooth;
 }
+a.active {
+  color: #000000;
+  background-color: #734ae533;
+}
 
 .buttonStyle {
   border-radius: 4px;
@@ -33,5 +37,5 @@
   height: 100px;
   border-radius: 50%;
   background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
-    conic-gradient(#4A25E1 75%, #EDE9FC 0);
+    conic-gradient(#4a25e1 75%, #ede9fc 0);
 }
