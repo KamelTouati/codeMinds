@@ -78,7 +78,7 @@ const anomalySlice = createSlice({
           toast.success("Anomaly added successfully");
         }
       )
-      .addCase(addAnomaly.rejected, (state, action) => {
+      .addCase(addAnomaly.rejected, (_, action) => {
         toast.error("Error in adding the anomaly" + action.payload);
       });
   },

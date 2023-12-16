@@ -41,6 +41,7 @@ export interface IAnouncement {
 export enum UserRole {
   ADMIN = "ADMIN",
   STUDENT = "STUDENT",
+  TEACHER = "TEACHER",
   STUFF = "STUFF",
 }
 
@@ -61,7 +62,7 @@ export interface IChat {
 export interface IMessage {
   _id: string;
   sender: IUser;
-  message: string;
+  content: string;
   roomdId: string;
   createdAt: string;
 }
@@ -70,4 +71,10 @@ export interface IAddAnnouncement {
   announcementType: string;
   title: string;
   message: string;
+}
+
+export interface ISideBarItem {
+  title: string;
+  link: string;
+  image: string;
 }

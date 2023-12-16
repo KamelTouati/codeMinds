@@ -4,10 +4,13 @@ import Sidebar from "../components/Sidebar";
 interface IProps {}
 const RootLayout = ({}: IProps) => {
   return (
-    <div className="flex gap-x-3 h-full">
-      <Sidebar />
-      {/* <aside>side bar</aside> */}
-      <Outlet />
+    <div className="flex gap-x-3 min-h-full">
+      <div className="basis-[30%] bg-red-300">
+        <Sidebar />
+      </div>
+      <div className="basis-full">
+        <Outlet />
+      </div>
     </div>
   );
 };

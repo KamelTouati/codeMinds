@@ -1,23 +1,30 @@
+import { useSelector } from "react-redux";
+import { IAnouncement } from "../../utils/types";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { useEffect } from "react";
+import { fetchAnnouncement } from "../../redux/features/announcements.slice";
+
+interface IProps {
+  announce: IAnouncement;
+}
 
 const AnnouncementComponent = ({
-  prof_image,
-  prof_name,
-  description,
-  title,
-  date,
-}:any) => {
+  announce: { announcedby, title, message, createdAt },
+}: IProps) => {
   return (
     <div className="bg-[#F8FBFF] flex justify-between items-center p-4 rounded-xl border border-gray-200">
       <div className="flex gap-4">
         <div>
-          <img className="w-[100px]" src={prof_image} alt="" />
+          <img className="w-[100px]" src={announcedby.profileImage} alt="" />
         </div>
         <div className="flex flex-col">
           <div className="flex gap-4 items-center">
-            <h1 className="text-3xl font-bold">{prof_name}</h1>
-            <h1 className="text-sm font-normal">{date}</h1>
+            <h1 className="text-3xl font-bold">
+              {announcedby.firstName} {announcedby.lastName}
+            </h1>
+            <h1 className="text-sm font-normal">{createdAt}</h1>
           </div>
-          <span className="font-normal">{description}</span>
+          <span className="font-normal">{message}</span>
           <div className="flex justify-between bg-gray-300 rounded-lg p-4 my-2">
             <h1 className="font-semibold">{title}</h1>
             <div className="flex gap-2 items">
@@ -32,40 +39,18 @@ const AnnouncementComponent = ({
 };
 
 const Announcement = () => {
-  const announcements = [
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-  ];
+  const { announcements, error, loading } = useSelector(
+    (state: RootState) => state.announcement
+  );
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAnnouncement());
+  }, [dispatch]);
+
+  if (loading) return <h2>Loading Announcements</h2>;
+
   return (
     <>
       <div className="p-4 ">
@@ -75,14 +60,7 @@ const Announcement = () => {
           </div>
           <div className="flex flex-col gap-4">
             {announcements.map((item, index) => (
-              <AnnouncementComponent
-                key={index}
-                prof_image={item.prof_image}
-                prof_name={item.prof_name}
-                description={item.description}
-                title={item.title}
-                date={item.date}
-              />
+              <AnnouncementComponent key={index} announce={item} />
             ))}
           </div>
         </div>
@@ -91,13 +69,7 @@ const Announcement = () => {
   );
 };
 
-/* eslint-disable no-empty-pattern */
-
-
-interface IProps {}
-const AnnouncementPage = ({}: IProps) => {
-  return (
-  <Announcement />
-  );
+const AnnouncementPage = () => {
+  return <Announcement />;
 };
 export default AnnouncementPage;

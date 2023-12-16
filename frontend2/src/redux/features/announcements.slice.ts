@@ -28,6 +28,7 @@ export const fetchAnnouncement = createAsyncThunk(
     }
   }
 );
+
 export const addAnnouncement = createAsyncThunk(
   "announcement/addAnnouncement",
   async (payload: IAddAnnouncement, thunkAPI) => {
@@ -76,7 +77,7 @@ const announcementSlice = createSlice({
           toast.success("Announcement added successfully");
         }
       )
-      .addCase(addAnnouncement.rejected, (state, action) => {
+      .addCase(addAnnouncement.rejected, (_, action) => {
         toast.error("Error in adding the announcement" + action.payload);
       });
   },

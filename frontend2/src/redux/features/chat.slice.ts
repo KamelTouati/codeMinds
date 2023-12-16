@@ -1,6 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IChat, IMessage } from "../../utils/types";
 import { axiosInstance } from "../../api/axios.config";
+import { RootState } from "../store";
+import toast from "react-hot-toast";
 
 interface ChatState {
   loading: boolean;
@@ -23,7 +25,7 @@ export const fetchChat = createAsyncThunk(
 
     try {
       const { data } = await axiosInstance.get(`/chats`);
-      return data;
+      return data[0];
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -34,8 +36,8 @@ export const fetchMessages = createAsyncThunk(
   "chat/fetchMessages",
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const { chat } = thunkAPI.getState() as { chat: { _id: string } }; // Adjust the state retrieval as needed
-    const chatId = chat?._id;
+    const state = thunkAPI.getState() as RootState; // Adjust the state retrieval as needed
+    const chatId = state.chat.chat?._id;
 
     console.log(chatId);
 
@@ -54,12 +56,10 @@ export const fetchMessages = createAsyncThunk(
 
 export const addMessage = createAsyncThunk(
   "chat/addMessage",
-  async (message: string, thunkAPI) => {
+  async (message: { message: string }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const { chat } = thunkAPI.getState() as { chat: { _id: string } }; // Adjust the state retrieval as needed
-    const chatId = chat?._id;
-
-    console.log(chatId);
+    const state = thunkAPI.getState() as RootState; // Adjust the state retrieval as needed
+    const chatId = state.chat.chat?._id;
 
     if (!chatId) {
       return thunkAPI.rejectWithValue("Chat ID is missing."); // Reject if chatId is not available
@@ -67,7 +67,7 @@ export const addMessage = createAsyncThunk(
 
     try {
       const { data } = await axiosInstance.post(`/chats/${chatId}`, {
-        message,
+        message: message.message,
       });
 
       return data;
@@ -80,11 +80,7 @@ export const addMessage = createAsyncThunk(
 const chatSlice = createSlice({
   name: "chat",
   initialState,
-  reducers: {
-    // addMessageLocaly(state, action: PayloadAction<IMessage>) {
-    //   state.messages?.push(action.payload);
-    // },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(fetchChat.pending, (state) => {
@@ -115,19 +111,10 @@ const chatSlice = createSlice({
         state.error = action.payload;
       });
 
-    builder
-      .addCase(
-        addMessage.fulfilled,
-        (state, action: PayloadAction<IMessage>) => {
-          state.loading = false;
-          state.messages?.push(action.payload);
-          state.error = null;
-        }
-      )
-      .addCase(addMessage.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    builder.addCase(addMessage.rejected, (state) => {
+      state.loading = false;
+      toast.error("Failed to send message.");
+    });
   },
 });
 

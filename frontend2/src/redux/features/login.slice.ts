@@ -3,7 +3,8 @@ import { axiosInstance } from "../../api/axios.config";
 import CookieService from "../../services/CookieService";
 import { toast } from "react-hot-toast";
 import { ILoginFormInput } from "../../utils/types";
-import { TOKEN_KEY } from "../../data";
+import { TOKEN_KEY, USER_ROLE_KEY } from "../../data";
+import { redirectWithRole } from "../../utils/utils";
 
 interface UserState {
   loading: boolean;
@@ -50,10 +51,11 @@ const loginSlice = createSlice({
       date.setTime(date.getTime() + EXPIRES_IN_DAYS);
       const options = { path: "/", expires: date };
       CookieService.set(TOKEN_KEY, action.payload.token, options);
+      CookieService.set(USER_ROLE_KEY, action.payload.role, options);
       toast.success("Logged in successfully");
 
       setTimeout(() => {
-        document.location.href = "/dashboard";
+        document.location.href = redirectWithRole(action.payload.role);
       }, 2000);
     });
 
