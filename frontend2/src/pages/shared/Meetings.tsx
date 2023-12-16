@@ -11,20 +11,19 @@ const DashboardMeetingMinutes = () => {
   return (
     <>
 
-      <div className="p-4 ">
-        <div className="flex flex-col">
+      <div className="p-4 w-full">
+        <div className="flex flex-col w-[80%] mx-auto">
           <div className="my-4 flex justify-between items-center">
-            <h1 className="text-xl font-semibold">Meeting Minutes</h1>
+            <h1 className="text-2xl font-semibold">Meeting Minutes</h1>
             {/* <h1 className="text-md text-gray-600">Last two weeks</h1> */}
             <div className="flex my-5">
-              <Link
-                to="/login"
+              <button
                 type="button"
-                className="buttonStyle2 flex items-center gap-4 text-white p-2"
+                className="buttonStyle2 flex items-center gap-4 bg-[#5A3FE0] font-medium text-xl py-2 px-5 rounded-xl text-white p-2"
               >
-                Add new Meeting Minutes
+                <span >Add new Meeting Minutes</span>
                 <FaRegArrowAltCircleRight />
-              </Link>
+              </button>
             </div>
           </div>
           <div>
@@ -41,7 +40,8 @@ const DashboardMeetingMinutes = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
+
+                  <tr className="bg-white border-b  hover:bg-[#734AE505] ">
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
@@ -68,7 +68,10 @@ const DashboardMeetingMinutes = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
+
+
+
+                  <tr className="bg-white border-b  hover:bg-[#734AE505] ">
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -95,7 +98,9 @@ const DashboardMeetingMinutes = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
+
+
+                  <tr className="bg-white border-b  hover:bg-[#734AE505] ">
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -122,7 +127,8 @@ const DashboardMeetingMinutes = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
+
+                  <tr className="bg-white border-b  hover:bg-[#734AE505] ">
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -149,7 +155,9 @@ const DashboardMeetingMinutes = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
+
+
+                  <tr className="bg-white border-b  hover:bg-[#734AE505] ">
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -176,7 +184,9 @@ const DashboardMeetingMinutes = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
+
+
+                  <tr className="bg-white border-b  hover:bg-[#734AE505] ">
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "

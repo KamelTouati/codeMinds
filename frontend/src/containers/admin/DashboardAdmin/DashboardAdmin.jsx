@@ -67,7 +67,6 @@ const DashboardAdmin = () => {
   ];
   return (
     <>
-      <NavbarAuth />
       <div class="p-4 sm:ml-64">
         <div className="flex flex-col">
           <div className="my-4 flex justify-between items-center">

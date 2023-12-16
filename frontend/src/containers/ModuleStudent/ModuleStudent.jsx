@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar, NavbarAuth } from "../../components";
+// import { Sidebar, NavbarAuth } from "../../components";
 import { Link } from "react-router-dom";
 import Module from "./components/Module";
 
@@ -33,9 +33,7 @@ const ModuleStudent = () => {
   ];
   return (
     <>
-      <NavbarAuth />
 
-      <Sidebar />
       <div class="p-4 sm:ml-64">
         <div className="flex flex-col">
           <div className="my-4 flex justify-between items-center">

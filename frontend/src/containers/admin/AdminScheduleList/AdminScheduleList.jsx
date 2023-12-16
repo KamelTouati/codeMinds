@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "/images/logo.png";
-import { NavbarAuth, Sidebar } from "../../../components";
+// import { NavbarAuth, Sidebar } from "../../../components";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { Schedule } from "./Schedule";
 
@@ -31,8 +31,7 @@ const AdminScheduleList = () => {
   ];
   return (
     <>
-      <NavbarAuth />
-      <Sidebar />
+
       <div class="p-4 sm:ml-64">
         <div className="flex flex-col">
           <div className="my-4 flex justify-between items-center">

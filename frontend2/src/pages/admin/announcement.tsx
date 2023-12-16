@@ -3,6 +3,7 @@
 // import { Sidebar, NavbarAuth } from "../../../components";
 import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { PiUploadSimple,PiFilePdfDuotone } from "react-icons/pi";
 
 const Announcement = ({ prof_image, prof_name, description, title, date }:any) => {
   return (
@@ -12,16 +13,16 @@ const Announcement = ({ prof_image, prof_name, description, title, date }:any) =
           <img className="w-[100px]" src={prof_image} alt="" />
         </div>
         <div className="flex flex-col">
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-end pb-2">
             <h1 className="text-3xl font-bold">{prof_name}</h1>
             <h1 className="text-sm font-normal">{date}</h1>
           </div>
           <span className="font-normal">{description}</span>
-          <div className="flex justify-between bg-gray-300 rounded-lg p-4 my-2">
-            <h1 className="font-semibold">{title}</h1>
-            <div className="flex gap-2 items">
-              <img className="w-[20px]" src="/images/pdf.svg" alt="" />
-              PV-S1.pdf
+          <div className="flex justify-between bg-[#734AE5]/10 rounded-lg p-4 my-2">
+            <h1 className="text-xl font-semibold">{title}</h1>
+            <div className="flex gap-2 items-center text-red-700 font-medium">
+                <PiFilePdfDuotone/>
+                <span>PV-S1.pdf</span>
             </div>
           </div>
         </div>
@@ -80,26 +81,32 @@ const AdminAnnouncement = () => {
                 </div>
                 <div className="flex flex-col">
                   <div className="flex-1">
-                    <input
-                      type="text"
+                    <textarea
+                      
                       id="large-input"
                       placeholder="make an announcement"
-                      className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md "
+                      rows={4}
+                      cols={180}
+                      
                     />
                   </div>
-                  <div className="flex">
+                  <div className="flex flex-row justify-between">
+                    <button>
+                        <PiUploadSimple size={28}/>
+                    </button>
                     <div className="flex my-5">
-                      <Link
-                        to="/login"
+                      <button
                         type="button"
-                        className="buttonStyle2 flex items-center gap-4 text-white p-2"
+                        className="buttonStyle2 flex items-center gap-4 bg-[#5A3FE0] font-medium text-xl py-2 px-5 rounded-xl text-white p-2"
                       >
                         Post
                         <FaRegArrowAltCircleRight />
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
+                
               </div>
             </div>
             {announcements.map((item, index) => (
