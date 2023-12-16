@@ -15,14 +15,14 @@ const AdminScheduleList = () => {
         "A schedule for the `2nd year` group `2` students which covers the modules : AI, Data science , English  , Networking , Enterpreunership , Data Analysis and ",
     },
     {
-      title: "First Semester Schedule(2cs)",
+      title: "Second Semester Schedule(2cs)",
       date: "12 august 2021",
       creator: "NOUARA",
       description:
         "A schedule for the `2nd year` group `2` students which covers the modules : AI, Data science , English  , Networking , Enterpreunership , Data Analysis and ",
     },
     {
-      title: "First Semester Schedule(2cs)",
+      title: "First Semester Schedule(1cp)",
       date: "12 august 2021",
       creator: "NOUARA",
       description:

@@ -6,6 +6,7 @@ export { default as DashboardAdmin } from "./admin/DashboardAdmin/DashboardAdmin
 export { default as AdminAnnouncement } from "./admin/AdminAnnouncement/AdminAnnouncement";
 export { default as AdminScheduleList } from "./admin/AdminScheduleList/AdminScheduleList";
 export { default as AdminStudent } from "./admin/AdminStudent/AdminStudent";
+export { default as ModuleStudent } from "./ModuleStudent/ModuleStudent";
 export { default as Announcement } from "./Announcement/Announcement";
 export { default as AdminScheduler } from "./admin/AdminScheduler";
 export { default as DashboardMeetingMinutes } from "./DashboardMeetingMinutes";
