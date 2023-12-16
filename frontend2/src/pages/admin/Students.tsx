@@ -42,10 +42,10 @@ const AdminStudent = () => {
   return (
     <>
 
-      <div className="p-4 sm:ml-64">
+      <div className="p-4 m-4 mt-12 border-[1px] shadow-sm min-h-[80%] ">
         <div className="flex flex-col">
           <div>
-            <h1 className="text-xl font-semibold my-4">Students</h1>
+            <h1 className="text-3xl font-bold my-4">Students</h1>
           </div>
           <div className="flex flex-col gap-4">
             {students.map((item, index) => (

@@ -5,7 +5,7 @@ interface IProps {}
 const RootLayout = ({}: IProps) => {
   return (
     <div className="flex gap-x-3 min-h-full">
-      <div className="basis-[30%] bg-red-300">
+      <div className="basis-[30%] bg-[#F2F6FF]">
         <Sidebar />
       </div>
       <div className="basis-full">

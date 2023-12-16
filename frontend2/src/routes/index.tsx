@@ -15,13 +15,17 @@ import AdminAnnouncement from "../pages/admin/announcement";
 import MeetingsPage from "../pages/shared/Meetings";
 import StudentsPage from "../pages/admin/Students";
 import TeachersPage from "../pages/admin/Teachers";
-import SchedulePage from "../pages/student/Schecule";
+import SchedulePage from "../pages/admin/schedule";
 import StudentModulesPage from "../pages/student/Modules";
 import TeacherModulesPage from "../pages/teacher/Module";
 import ChatPage from "../pages/teacher/Chat";
 import SettingsAndProfilePage from "../pages/shared/SettingsAndProfile";
 import ReportProblemPage from "../pages/teacher/ReportProblem";
 import Problems from "../pages/Problems";
+
+import StaticSchedule from '../pages/admin/schedule/Static';
+import CreateSchedule from '../pages/admin/schedule/Create'
+
 import {
   isAdmin,
   isStudent,
@@ -100,15 +104,15 @@ const router = createBrowserRouter([
       },
       {
         path: "schedule/teacher/:id",
-        element: <SchedulePage />,
+        element: <StaticSchedule />,
       },
       {
         path: "schedule/group/:id",
-        element: <SchedulePage />,
+        element: <StaticSchedule />,
       },
       {
         path: "schedule/create",
-        element: <SchedulePage />,
+        element: <CreateSchedule />,
       },
     ],
   },

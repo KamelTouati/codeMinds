@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 // import logo from "/images/logo.png";
 // import { NavbarAuth, Sidebar } from "../components";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { PiFilePdfDuotone } from "react-icons/pi";
 
 const DashboardMeetingMinutes = () => {
   return (
@@ -35,7 +36,10 @@ const DashboardMeetingMinutes = () => {
                       Nº
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Ref
+                      Author
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      File
                     </th>
                   </tr>
                 </thead>
@@ -59,11 +63,7 @@ const DashboardMeetingMinutes = () => {
                     </td>
                     <td className="px-6 py-4 text-red-500">
                       <div className="flex gap-2 items">
-                        <img
-                          className="w-[20px]"
-                          src="/images/pdf.svg"
-                          alt=""
-                        />
+                        <PiFilePdfDuotone size={28}/>
                         PV-S1.pdf
                       </div>
                     </td>
@@ -89,11 +89,8 @@ const DashboardMeetingMinutes = () => {
                     </td>
                     <td className="px-6 py-4 text-red-500">
                       <div className="flex gap-2 items">
-                        <img
-                          className="w-[20px]"
-                          src="/images/pdf.svg"
-                          alt=""
-                        />
+                                                <PiFilePdfDuotone size={28}/>
+
                         PV-S1.pdf
                       </div>
                     </td>

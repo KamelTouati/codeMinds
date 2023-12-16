@@ -4,24 +4,38 @@
 import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { PiUploadSimple,PiFilePdfDuotone } from "react-icons/pi";
+import { useSelector } from "react-redux";
+import { IAnouncement } from "../../utils/types";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { useEffect } from "react";
+import { fetchAnnouncement } from "../../redux/features/announcements.slice";
 
-const Announcement = ({ prof_image, prof_name, description, title, date }:any) => {
+
+
+
+
+interface IProps {
+  announce: IAnouncement;
+}
+const Announcement = ({
+  announce: { announcedby, title, message, createdAt },
+}: IProps) => {
   return (
     <div className="bg-[#F8FBFF] flex justify-between items-center p-4 rounded-xl border border-gray-200">
-      <div className="flex gap-4">
+      <div className="flex gap-4 w-full">
         <div>
-          <img className="w-[100px]" src={prof_image} alt="" />
+          <img className="w-[100px]" src={announcedby.profileImage} alt="" />
         </div>
-        <div className="flex flex-col">
-          <div className="flex gap-4 items-end pb-2">
-            <h1 className="text-3xl font-bold">{prof_name}</h1>
-            <h1 className="text-sm font-normal">{date}</h1>
+        <div className="flex flex-col w-full">
+          <div className="flex gap-4 items-start pb-2">
+            <h1 className="text-3xl font-bold">{announcedby.firstName} {announcedby.lastName}</h1>
+            <h1 className="text-sm font-normal">{createdAt.slice(0,10)}</h1>
           </div>
-          <span className="font-normal">{description}</span>
-          <div className="flex justify-between bg-[#734AE5]/10 rounded-lg p-4 my-2">
+          <span className="font-normal">{message}</span>
+          <div className="flex justify-between bg-[#734AE5]/10 rounded-lg p-4 my-2 w-full">
             <h1 className="text-xl font-semibold">{title}</h1>
-            <div className="flex gap-2 items-center text-red-700 font-medium">
-                <PiFilePdfDuotone/>
+            <div className="flex gap-2 items-center text-red-600 font-medium">
+                <PiFilePdfDuotone size={28}/>
                 <span>PV-S1.pdf</span>
             </div>
           </div>
@@ -32,48 +46,61 @@ const Announcement = ({ prof_image, prof_name, description, title, date }:any) =
 };
 
 const AdminAnnouncement = () => {
-  const announcements = [
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-    {
-      prof_image: "/images/image.png",
-      prof_name: "Azzouaou Faical",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
-      title: "Law interne",
-      date: "15/12/2023",
-    },
-  ];
+  // const announcements = [
+  //   {
+  //     prof_image: "/images/image.png",
+  //     prof_name: "Azzouaou Faical",
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
+  //     title: "Law interne",
+  //     date: "15/12/2023",
+  //   },
+  //   {
+  //     prof_image: "/images/image.png",
+  //     prof_name: "Azzouaou Faical",
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
+  //     title: "Law interne",
+  //     date: "15/12/2023",
+  //   },
+  //   {
+  //     prof_image: "/images/image.png",
+  //     prof_name: "Azzouaou Faical",
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
+  //     title: "Law interne",
+  //     date: "15/12/2023",
+  //   },
+  //   {
+  //     prof_image: "/images/image.png",
+  //     prof_name: "Azzouaou Faical",
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ullam rerum sequi quo praesentium vero vitae quod laudantium deleniti! Voluptatem culpa esse distinctio natus aliquid dolorem aperiam, blanditiis autem quia!",
+  //     title: "Law interne",
+  //     date: "15/12/2023",
+  //   },
+  // ];
+  
+  
+  const { announcements, error, loading } = useSelector(
+    (state: RootState) => state.announcement
+  );
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAnnouncement());
+  }, [dispatch]);
+
+  if (loading) return <h2>Loading Announcements</h2>;
   return (
     <>
-      <div className="p-4 m-4 border-[1px] rounded-xl shadow-sm">
-        <div className="flex flex-col">
+      <div className="p-4 m-4 border-[1px] mt-12 rounded-xl shadow-sm w-[90%]">
+        <div className="flex flex-col w-full">
           <div>
             <h1 className="text-xl font-semibold my-4">Modules Progress</h1>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             <div className="bg-[#F8FBFF] p-4 rounded-xl border border-gray-200">
               <div className="flex gap-4">
                 <div>
@@ -93,7 +120,7 @@ const AdminAnnouncement = () => {
                   </div>
                   <div className="flex flex-row justify-between">
                     <button>
-                        <PiUploadSimple size={28}/>
+                        <PiUploadSimple size={28} className="text-[#5a3fe0]"/>
                     </button>
                     <div className="flex my-5">
                       <button
@@ -110,14 +137,7 @@ const AdminAnnouncement = () => {
               </div>
             </div>
             {announcements.map((item, index) => (
-              <Announcement
-                key={index}
-                prof_image={item.prof_image}
-                prof_name={item.prof_name}
-                description={item.description}
-                title={item.title}
-                date={item.date}
-              />
+              <Announcement key={index} announce={item} />
             ))}
           </div>
         </div>

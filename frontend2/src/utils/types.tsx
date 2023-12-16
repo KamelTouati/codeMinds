@@ -39,10 +39,10 @@ export interface IAnouncement {
 }
 
 export enum UserRole {
-  ADMIN = "ADMIN",
+  ADMIN = "ADMINISTRATION",
   STUDENT = "STUDENT",
   TEACHER = "TEACHER",
-  STUFF = "STUFF",
+  STUFF = "MAINTENANCE",
 }
 
 export interface IAnomaly {

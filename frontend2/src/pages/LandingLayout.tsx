@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 interface IProps {}
 const LandingLayout = ({}: IProps) => {
   return (
-    <div>
+    <div className="w-full h-full">
       <Navbar />
       <Outlet />
     </div>

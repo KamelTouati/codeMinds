@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     profileImage: String,
     role: {
       type: String,
-      enum: [UserRole.ADMIN, UserRole.STUDENT, UserRole.TEACHER],
+      enum: [UserRole.ADMINISTRATION, UserRole.STUDENT, UserRole.TEACHER,UserRole.MAINTENANCE],
       default: UserRole.STUDENT,
     },
     groupId: { type: mongoose.Schema.Types.ObjectId, ref: "Group" },

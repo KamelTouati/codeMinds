@@ -41,7 +41,7 @@ function Sidebar() {
   });
 
   return (
-    <div className="bg-[#F2F6FF] h-screen flex flex-col gap-6 p-6">
+    <div className="bg-[#F2F6FF] h-screen flex flex-col gap-6 p-6 pt-12 sticky">
       <NavLink to="/" className="flex flex-col items-center">
         <img src={logo} className="h-8 mr-3" alt="Logo" />
         <span className="self-center text-2xl font-semibold whitespace-nowrap ">
