@@ -30,9 +30,12 @@ export interface IUser {
 }
 
 export interface IAnouncement {
+  _id: string;
+  title: string;
+  announcementType: string;
   message: string;
-  poster: IUser;
-  dateTime: string;
+  announcedby: IUser;
+  createdAt: string;
 }
 
 export enum UserRole {
@@ -41,11 +44,11 @@ export enum UserRole {
   STUFF = "STUFF",
 }
 
-export interface IAnnomaly {
+export interface IAnomaly {
   _id: string;
   reportedBy: IUser;
   message: string;
-  dateTime: Date;
+  createdAt: string;
   solvedBy?: IUser;
 }
 
@@ -61,4 +64,10 @@ export interface IMessage {
   message: string;
   roomdId: string;
   createdAt: string;
+}
+
+export interface IAddAnnouncement {
+  announcementType: string;
+  title: string;
+  message: string;
 }
