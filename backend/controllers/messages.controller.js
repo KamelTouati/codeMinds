@@ -4,24 +4,25 @@ const Message = require("../models/messages");
 class MessagesController {
   sendMessage = async (req, res, next) => {
     try {
-      const { content, senderId, chatRoomId } = req.body;
+      const { content } = req.body;
+      const { chatId } = req.params;
 
       // Validate the presence of required fields
-      if (!content || !senderId || !chatRoomId) {
+      if (!content || !chatId) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
       // Create a new message
       const message = new Message({
         content,
-        sender: senderId,
-        chatRoom: chatRoomId,
+        sender: req.user._id,
+        chatRoom: chatId,
       });
 
       // Save the message to the database
       await message.save();
 
-      res.status(201).json({ message });
+      res.status(201).json(message);
     } catch (error) {
       next(error);
     }
@@ -32,10 +33,10 @@ class MessagesController {
 
       // Fetch all messages for the specified chat room
       const messages = await Message.find({ chatRoom: chatRoomId }).populate(
-        "senderId"
+        "sender"
       );
 
-      res.status(200).json({ messages });
+      res.status(200).json(messages);
     } catch (error) {
       next(error);
     }

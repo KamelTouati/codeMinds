@@ -25,9 +25,9 @@ app.get("/", (req, res, next) => {
 
 app.use("/auth", require("./routes/auth.routes"));
 app.use("/admin", require("./routes/admin.routes"));
-app.use("/announcment", require("./routes/announcement.routes"));
-// app.use("/chats", chatsRouter);
-// app.use("/messages", messagesRouter);
+app.use("/announcement", require("./routes/announcement.routes"));
+app.use("/anomaly", require("./routes/anomaly.routes.js"));
+app.use("/chats", require("./routes/chats.routes.js"));
 
 //! catch 404 and forward to error handler
 app.use((req, res, next) => {

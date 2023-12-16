@@ -45,6 +45,36 @@ const verifyAdmin = async (req, res, next) => {
   }
 };
 
+const verifyStudent = async (req, res, next) => {
+  try {
+    const { isAdmin, role } = await Users.findById(req.user._id);
+    if (role === UserRole.STUDENT) {
+      next();
+    } else {
+      let err = new Error("UnAuthorized , you're not an admin");
+      err.statusCode = 401;
+      return next(err);
+    }
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const verifyTeacher = async (req, res, next) => {
+  try {
+    const { isAdmin, role } = await Users.findById(req.user._id);
+    if (role === UserRole.TEACHER) {
+      next();
+    } else {
+      let err = new Error("UnAuthorized , you're not an admin");
+      err.statusCode = 401;
+      return next(err);
+    }
+  } catch (err) {
+    return next(err);
+  }
+};
+
 //* extract token from this user
 const extractTokenFromHeaderAuthorization = (req) => {
   const token = req.headers.authorization.split(" ")[1];
@@ -65,4 +95,6 @@ module.exports = {
   createToken,
   verifyUser,
   verifyAdmin,
+  verifyStudent,
+  verifyTeacher,
 };

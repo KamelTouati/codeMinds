@@ -1,65 +1,49 @@
 var express = require("express");
 var router = express.Router();
-//* handle managing of users (update delete bloc ...)
 const adminController = require("../controllers/admin.controller");
-const { not_supported_operation } = require("../controllers/common_responses");
 const awaitHandlerFactory = require("../middlewares/awaitHandlerFactory.middleware");
 const authentication = require("../middlewares/authentication");
 
-//! /admin/users
-//* we can use this end point to search user we use the query search=<val>
 router.get(
   "/users",
   authentication.verifyUser,
   authentication.verifyAdmin,
   awaitHandlerFactory(adminController.getUsers)
 );
-//todo: add new user diff is he will be accepted auto
+
 router.post(
-  "/users",
+  "/users/student",
   authentication.verifyUser,
   authentication.verifyAdmin,
-  not_supported_operation
-);
-router.delete(
-  "/users",
-  authentication.verifyUser,
-  authentication.verifyAdmin,
-  awaitHandlerFactory(adminController.deleteUsers)
+  awaitHandlerFactory(adminController.addStudent)
 );
 
-//! users
-router.get(
-  "/users/:userId",
-  authentication.verifyUser,
-  authentication.verifyAdmin,
-  awaitHandlerFactory(adminController.getUser)
-);
-//todo update user
 router.post(
-  "/users/:userId",
+  "/users/teacher",
   authentication.verifyUser,
   authentication.verifyAdmin,
-  not_supported_operation
+  awaitHandlerFactory(adminController.addTeacher)
 );
-//todo: verify user account {accept him or refuse his access to the app}
-router.put(
-  "/users/:userId",
+
+router.post(
+  "/users/maintainance",
   authentication.verifyUser,
   authentication.verifyAdmin,
-  awaitHandlerFactory(adminController.verifyUser)
+  awaitHandlerFactory(adminController.addMaintainance)
 );
-router.put(
-  "/users/:userId",
+
+router.post(
+  "/users/admin",
   authentication.verifyUser,
   authentication.verifyAdmin,
-  awaitHandlerFactory(adminController.updateUser)
+  awaitHandlerFactory(adminController.addAdmin)
 );
+
 router.delete(
-  "/users/:userId",
+  "/users",
   authentication.verifyUser,
   authentication.verifyAdmin,
-  awaitHandlerFactory(adminController.deleteUser)
+  awaitHandlerFactory(adminController.deleteAllUsers)
 );
 
 module.exports = router;
