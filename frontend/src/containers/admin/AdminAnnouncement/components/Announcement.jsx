@@ -1,5 +1,4 @@
 import React from "react";
-
 const Announcement = ({ prof_image, prof_name, description, title, date }) => {
   return (
     <div className="bg-[#F8FBFF] flex justify-between items-center p-4 rounded-xl border border-gray-200">
