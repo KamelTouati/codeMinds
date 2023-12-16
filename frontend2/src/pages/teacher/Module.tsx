@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-pattern */
 interface IProps {}
-const TeacherModulesPage = ({}: IProps) => {
+const TeacherModulePage = ({}: IProps) => {
   return <div>TeacherModulesPage</div>;
 };
-export default TeacherModulesPage;
+export default TeacherModulePage;

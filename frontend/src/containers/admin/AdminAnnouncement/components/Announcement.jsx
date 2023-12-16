@@ -1,4 +1,3 @@
-import React from "react";
 
 const Announcement = ({ prof_image, prof_name, description, title, date }) => {
   return (
