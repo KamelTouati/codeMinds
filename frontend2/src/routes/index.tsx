@@ -10,18 +10,24 @@ import { TOKEN_KEY } from "../data";
 import LandingLayout from "../pages/LandingLayout";
 import RootLayout from "../pages/RootLayout";
 import AnnouncementPage from "../pages/shared/Announcement";
+import AdminAnnouncement from "../pages/admin/announcement";
+
 import MeetingsPage from "../pages/shared/Meetings";
 import StudentsPage from "../pages/admin/Students";
 import TeachersPage from "../pages/admin/Teachers";
 import SchedulePage from "../pages/student/Schecule";
 import StudentModulesPage from "../pages/student/Modules";
-import TeacherModulesPage from "../pages/teacher/Modules";
+import TeacherModulesPage from "../pages/teacher/Module";
 import ChatPage from "../pages/teacher/Chat";
 import SettingsAndProfilePage from "../pages/shared/SettingsAndProfile";
 import ReportProblemPage from "../pages/teacher/ReportProblem";
+import Problems from "../pages/Problems";
+
 
 const token = CookieService.get(TOKEN_KEY);
-const isLoggedIn = token ? true : false;
+
+console.log(token)
+const isLoggedIn = !(token ? true : false);
 
 const router = createBrowserRouter([
   {
@@ -56,11 +62,11 @@ const router = createBrowserRouter([
         element: <DashboardPage />,
       },
       {
-        path: "anouncements",
-        element: <AnnouncementPage />,
+        path: "announcements",
+        element: <AdminAnnouncement />,
       },
       {
-        path: "meetings",
+        path: "cps",
         element: <MeetingsPage />,
       },
       {
@@ -114,14 +120,14 @@ const router = createBrowserRouter([
   {
     path: "/teacher",
     element: (
-      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login">
+      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login" >
         <RootLayout />
       </ProtectedRoute>
     ),
     children: [
       {
         index: true,
-        element: <MeetingsPage />,
+        element: <AnnouncementPage />,
       },
       {
         path: "modules",
@@ -132,25 +138,25 @@ const router = createBrowserRouter([
         element: <ChatPage />,
       },
       {
-        path: "announcements",
-        element: <AnnouncementPage />,
+        path: "cps",
+        element: <MeetingsPage />,
       },
       {
         path: "schedule",
         element: <SchedulePage />,
       },
       {
-        path: "settings-profile",
+        path: "profile",
         element: <SettingsAndProfilePage />,
       },
       {
-        path: "settings-profile",
+        path: "profile",
         element: <ReportProblemPage />,
       },
     ],
   },
   {
-    path: "/stuff",
+    path: "/maintenance",
     element: (
       <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login">
         <RootLayout />
@@ -162,12 +168,12 @@ const router = createBrowserRouter([
         element: <AnnouncementPage />,
       },
       {
-        path: "settings-profile",
+        path: "profile",
         element: <SettingsAndProfilePage />,
       },
       {
-        path: "announcements",
-        element: <AnnouncementPage />,
+        path: "problems",
+        element: <Problems />,
       },
     ],
   },

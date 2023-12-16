@@ -19,4 +19,5 @@ const Layout = (props) => {
     </>
   );
 };
+
 export default connect(null, { checkAuthenticated, load_user })(Layout);
