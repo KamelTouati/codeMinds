@@ -9,9 +9,10 @@ import {
   ResetPasswordConfirm,
   DashboardAdmin,
   DashboardMeetingMinutes,
+  Announcement,
+  ModuleStudent,
   AdminAnnouncement,
   AdminScheduleList,
-  Announcement,
   AdminScheduler,
   AdminStudent,
 } from "./containers";
@@ -36,6 +37,7 @@ export default function App() {
               <Route path="/login" exact element={<Login />} />
               <Route path="/register" exact element={<Register />} />
               <Route path="/profile" exact element={<Profile />} />
+              <Route path="/modules" exact element={<ModuleStudent />} />
               <Route
                 path="/dashboard-admin"
                 exact
