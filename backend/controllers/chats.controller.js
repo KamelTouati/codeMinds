@@ -44,7 +44,7 @@ class ChatsController {
         teachers: { $in: [teacherId] },
       }).sort({ updatedAt: -1 });
 
-      res.status(200).json({ chatRooms });
+      res.status(200).json(chatRooms);
     } catch (error) {
       next(error);
     }

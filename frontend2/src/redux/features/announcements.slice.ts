@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axios.config";
-import { IAnouncement } from "../../utils/types";
+import { IAddAnnouncement, IAnouncement } from "../../utils/types";
+import toast from "react-hot-toast";
 
 interface AnnouncementsState {
   loading: boolean;
@@ -21,6 +22,20 @@ export const fetchAnnouncement = createAsyncThunk(
 
     try {
       const { data } = await axiosInstance.get(`/announcement`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addAnnouncement = createAsyncThunk(
+  "announcement/addAnnouncement",
+  async (payload: IAddAnnouncement, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const { data } = await axiosInstance.post(`/announcement`, payload);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -49,6 +64,22 @@ const announcementSlice = createSlice({
       state.announcements = [];
       state.error = action.payload;
     });
+
+    builder
+      .addCase(addAnnouncement.pending, (_) => {
+        toast.success("adding the announcement...");
+      })
+      .addCase(
+        addAnnouncement.fulfilled,
+        (state, action: PayloadAction<IAnouncement>) => {
+          state.announcements = [action.payload, ...state.announcements];
+
+          toast.success("Announcement added successfully");
+        }
+      )
+      .addCase(addAnnouncement.rejected, (_, action) => {
+        toast.error("Error in adding the announcement" + action.payload);
+      });
   },
 });
 

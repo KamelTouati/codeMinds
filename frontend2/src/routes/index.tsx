@@ -6,7 +6,7 @@ import PageNotFound from "../components/errors/PageNotFound";
 import LandingPage from "../pages/Landing";
 import DashboardPage from "../pages/admin/Dashboard";
 import CookieService from "../services/CookieService";
-import { TOKEN_KEY } from "../data";
+import { TOKEN_KEY, USER_ROLE_KEY } from "../data";
 import LandingLayout from "../pages/LandingLayout";
 import RootLayout from "../pages/RootLayout";
 import AnnouncementPage from "../pages/shared/Announcement";
@@ -22,18 +22,28 @@ import ChatPage from "../pages/teacher/Chat";
 import SettingsAndProfilePage from "../pages/shared/SettingsAndProfile";
 import ReportProblemPage from "../pages/teacher/ReportProblem";
 import Problems from "../pages/Problems";
-
+import {
+  isAdmin,
+  isStudent,
+  isStuff,
+  isTeacher,
+  redirectWithRole,
+} from "../utils/utils";
 
 const token = CookieService.get(TOKEN_KEY);
+const userRole = CookieService.get(USER_ROLE_KEY);
 
-console.log(token)
-const isLoggedIn = !(token ? true : false);
+console.log(userRole, token);
+const isLoggedIn = token ? true : false;
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ProtectedRoute isAllowed={!isLoggedIn} redirectTo="/dashboard">
+      <ProtectedRoute
+        isAllowed={!isLoggedIn}
+        redirectTo={redirectWithRole(userRole)}
+      >
         <LandingLayout />
       </ProtectedRoute>
     ),
@@ -50,9 +60,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/admin",
+    path: "admin",
     element: (
-      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login">
+      <ProtectedRoute
+        isAllowed={isLoggedIn && isAdmin(userRole)}
+        redirectTo="/login"
+      >
         <RootLayout />
       </ProtectedRoute>
     ),
@@ -82,6 +95,10 @@ const router = createBrowserRouter([
         element: <SchedulePage />,
       },
       {
+        path: "profile",
+        element: <SettingsAndProfilePage />,
+      },
+      {
         path: "schedule/teacher/:id",
         element: <SchedulePage />,
       },
@@ -96,15 +113,19 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/student",
+    path: "student",
     element: (
-      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login">
+      <ProtectedRoute
+        isAllowed={isLoggedIn && isStudent(userRole)}
+        redirectTo="/login"
+      >
         <RootLayout />
       </ProtectedRoute>
     ),
     children: [
       {
         path: "modules",
+        index: true,
         element: <StudentModulesPage />,
       },
       {
@@ -112,21 +133,36 @@ const router = createBrowserRouter([
         element: <StudentModulesPage />,
       },
       {
+        path: "announcements",
+        element: <AnnouncementPage />,
+      },
+      {
         path: "schedule",
-        element: <StudentModulesPage />,
+        element: <SchedulePage />,
+      },
+      {
+        path: "profile",
+        element: <SettingsAndProfilePage />,
       },
     ],
   },
   {
-    path: "/teacher",
+    path: "teacher",
     element: (
-      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login" >
+      <ProtectedRoute
+        isAllowed={isLoggedIn && isTeacher(userRole)}
+        redirectTo="/login"
+      >
         <RootLayout />
       </ProtectedRoute>
     ),
     children: [
       {
         index: true,
+        element: <MeetingsPage />,
+      },
+      {
+        path: "announcements",
         element: <AnnouncementPage />,
       },
       {
@@ -138,10 +174,6 @@ const router = createBrowserRouter([
         element: <ChatPage />,
       },
       {
-        path: "cps",
-        element: <MeetingsPage />,
-      },
-      {
         path: "schedule",
         element: <SchedulePage />,
       },
@@ -150,15 +182,18 @@ const router = createBrowserRouter([
         element: <SettingsAndProfilePage />,
       },
       {
-        path: "profile",
+        path: "problem",
         element: <ReportProblemPage />,
       },
     ],
   },
   {
-    path: "/maintenance",
+    path: "maintenance",
     element: (
-      <ProtectedRoute isAllowed={isLoggedIn} redirectTo="/login">
+      <ProtectedRoute
+        isAllowed={isLoggedIn && isStuff(userRole)}
+        redirectTo="/login"
+      >
         <RootLayout />
       </ProtectedRoute>
     ),

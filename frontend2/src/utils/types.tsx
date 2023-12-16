@@ -30,22 +30,26 @@ export interface IUser {
 }
 
 export interface IAnouncement {
+  _id: string;
+  title: string;
+  announcementType: string;
   message: string;
-  poster: IUser;
-  dateTime: string;
+  announcedby: IUser;
+  createdAt: string;
 }
 
 export enum UserRole {
   ADMIN = "ADMIN",
   STUDENT = "STUDENT",
+  TEACHER = "TEACHER",
   STUFF = "STUFF",
 }
 
-export interface IAnnomaly {
+export interface IAnomaly {
   _id: string;
   reportedBy: IUser;
   message: string;
-  dateTime: Date;
+  createdAt: string;
   solvedBy?: IUser;
 }
 
@@ -58,7 +62,19 @@ export interface IChat {
 export interface IMessage {
   _id: string;
   sender: IUser;
-  message: string;
+  content: string;
   roomdId: string;
   createdAt: string;
+}
+
+export interface IAddAnnouncement {
+  announcementType: string;
+  title: string;
+  message: string;
+}
+
+export interface ISideBarItem {
+  title: string;
+  link: string;
+  image: string;
 }
