@@ -4,12 +4,10 @@ const Anomaly = require("../models/anomaly");
 class AnomalyController {
   async createAnomaly(req, res) {
     try {
-      const { reportedBy, message, dateTime, solvedBy } = req.body;
+      const { message } = req.body;
       const newAnomaly = await Anomaly.create({
-        reportedBy,
+        reportedBy: req.user._id,
         message,
-        dateTime,
-        solvedBy,
       });
       res.status(201).json(newAnomaly);
     } catch (err) {
@@ -19,7 +17,7 @@ class AnomalyController {
 
   async getAllAnomalies(req, res) {
     try {
-      const anomalies = await Anomaly.find();
+      const anomalies = await Anomaly.find().sort({ createdAt: -1 });
       res.status(200).json(anomalies);
     } catch (err) {
       res.status(500).json({ message: err.message });

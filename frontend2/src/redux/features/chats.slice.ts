@@ -12,6 +12,7 @@ interface ChatState {
 const initialState: ChatState = {
   loading: false, // ** Pending
   chat: undefined,
+  messages: undefined,
   error: null, // ** Error => rejected
 };
 
@@ -51,10 +52,39 @@ export const fetchMessages = createAsyncThunk(
   }
 );
 
+export const addMessage = createAsyncThunk(
+  "chat/addMessage",
+  async (message: string, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    const { chat } = thunkAPI.getState() as { chat: { _id: string } }; // Adjust the state retrieval as needed
+    const chatId = chat?._id;
+
+    console.log(chatId);
+
+    if (!chatId) {
+      return thunkAPI.rejectWithValue("Chat ID is missing."); // Reject if chatId is not available
+    }
+
+    try {
+      const { data } = await axiosInstance.post(`/chats/${chatId}`, {
+        message,
+      });
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const chatSlice = createSlice({
   name: "chat",
   initialState,
-  reducers: {},
+  reducers: {
+    // addMessageLocaly(state, action: PayloadAction<IMessage>) {
+    //   state.messages?.push(action.payload);
+    // },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchChat.pending, (state) => {
@@ -75,7 +105,6 @@ const chatSlice = createSlice({
       .addCase(
         fetchMessages.fulfilled,
         (state, action: PayloadAction<IMessage[]>) => {
-          state.loading = false;
           state.messages = action.payload;
           state.error = null;
         }
@@ -83,6 +112,20 @@ const chatSlice = createSlice({
       .addCase(fetchMessages.rejected, (state, action) => {
         state.loading = false;
         state.messages = undefined;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(
+        addMessage.fulfilled,
+        (state, action: PayloadAction<IMessage>) => {
+          state.loading = false;
+          state.messages?.push(action.payload);
+          state.error = null;
+        }
+      )
+      .addCase(addMessage.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.payload;
       });
   },
