@@ -18,16 +18,16 @@ class ChatsController {
       // Save the chat room to the database
       await chatRoom.save();
 
-      res.status(201).json({ chatRoom });
+      res.status(201).json(chatRoom);
     } catch (error) {
       next(error);
     }
   };
+
   deleteChat = async (req, res, next) => {
     try {
       const { chatRoomId } = req.params;
 
-      // Delete the specified chat room
       await ChatRoom.findByIdAndDelete(chatRoomId);
 
       res.status(204).json("Chat Deleted");
@@ -38,9 +38,11 @@ class ChatsController {
 
   getChats = async (req, res, next) => {
     try {
-      const { teacherId } = req.params;
-      // Fetch all chat rooms
-      const chatRooms = await ChatRoom.find({ teachers: { $in: [teacherId] } });
+      const teacherId = req.user._id;
+
+      const chatRooms = await ChatRoom.find({
+        teachers: { $in: [teacherId] },
+      }).sort({ updatedAt: -1 });
 
       res.status(200).json({ chatRooms });
     } catch (error) {

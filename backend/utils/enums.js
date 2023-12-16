@@ -1,7 +1,7 @@
 // deaclare enum
 //["TEACHER", "STUDENT", "MAINTENANCE", "ADMINISTRATION"],
 const UserRole = {
-  USER: "USER",
+  TEACHER: "TEACHER",
   STUDENT: "STUDENT",
   MAINTENANCE: "MAINTENANCE",
   ADMINISTRATION: "ADMINISTRATION",
@@ -11,6 +11,7 @@ const AnnouncmentType = {
   ALL: "ALL",
   TEACHERS: "TEACHERS",
   STUDENTS: "STUDENTS",
+  MAINTENANCE: "MAINTENANCE",
 };
 
 module.exports = {

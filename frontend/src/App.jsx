@@ -10,8 +10,10 @@ import {
   DashboardAdmin,
   DashboardMeetingMinutes,
   AdminAnnouncement,
+  AdminScheduleList,
   Announcement,
   AdminScheduler,
+  AdminStudent,
 } from "./containers";
 
 import Layout from "./hocs/Layout";
@@ -44,12 +46,18 @@ export default function App() {
                 exact
                 element={<AdminAnnouncement />}
               />
+              <Route
+                path="/admin-schedule-list"
+                exact
+                element={<AdminScheduleList />}
+              />
               <Route path="/announcement" exact element={<Announcement />} />
               <Route
                 path="/admin-scheduler"
                 exact
                 element={<AdminScheduler />}
               />
+              <Route path="/admin-student" exact element={<AdminStudent />} />
               <Route
                 path="/dashboard-meeting-minutes"
                 exact
