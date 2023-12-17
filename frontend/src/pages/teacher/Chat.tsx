@@ -32,9 +32,7 @@ interface IProps {}
 const ChatPage = ({}: IProps) => {
   const messageRef = useRef<HTMLInputElement>(null);
 
-  const { messages, loading, chat, error } = useSelector(
-    (state: RootState) => state.chat
-  );
+  const { messages } = useSelector((state: RootState) => state.chat);
 
   const dispatch = useAppDispatch();
 

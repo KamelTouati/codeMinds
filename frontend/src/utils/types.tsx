@@ -78,3 +78,10 @@ export interface ISideBarItem {
   link: string;
   image: string;
 }
+
+export interface IScheduleItem {
+  title: string;
+  date: string;
+  creator: string;
+  description: string;
+}
